@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+
+
+<head>
+
+</head>
+
+<body>
+    <h1>Coffe Shop</h1>
+    <div>
+        <label for="CoffeAlternatives">V&auml;lj kaffesort:</label>
+        <select name="CoffeAlternatives" id="CoffeAlternatives">
+            <option value="1">Brygg Kaffe 20:-</option>
+            <option value="2">Cappucino 30:-</option>
+            <option value="3">Latte 40:-</option>
+        </select>
+        <label for="amountOfCoffe">Antal</label>
+        <input id="amountOfCoffe" type="text">
+        <button onclick="onBuyButtonClick()">k&ouml;p</button>
+
+    </div>
+
+    <div>
+        Du har handlat för:<p id="TotalSpent"></p>
+        <!-- ersetta denna div med createElement -->
+       
+    </div>
+
+
+
+
+
+    <hr>
+    <h1>Dina transaktioner</h1>
+
+
+
+    <script>
+        class Customer {
+            constructor() {
+                this.transactions = []
+            }
+            addTransaction(amount) {
+                this.transactions.push(amount)
+            }
+            getTotalSpent() {
+                let sum = 0
+                this.transactions.forEach(transaction => {
+                    sum += transaction
+                })
+                return sum
+            }
+            
+
+        }
+
+        const customer = new Customer()
+
+        function onBuyButtonClick() {
+            const input = document.getElementById("amountOfCoffe")
+            const pricePerCup = 50
+            const transactionValue = pricePerCup * input.value
+            customer.addTransaction(transactionValue)
+            console.log(customer.transactions)
+
+
+            const totalSpentParagraph = document.getElementById("TotalSpent")
+            totalSpentParagraph.innerHTML = customer.getTotalSpent()
+
+
+        }
+    </script>
+</body>
+
+</html>
